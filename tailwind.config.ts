@@ -16,13 +16,16 @@ export default {
         },
 
         dark: {
-          1: "#000",
+          1: "#0d0d0d",
           2: "#475467",
         },
 
         background: {
           1: "#fff",
         },
+      },
+      boxShadow: {
+        customShadow: "0 0 5px #c7c7c7",
       },
     },
   },

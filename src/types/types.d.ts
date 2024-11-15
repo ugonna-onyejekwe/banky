@@ -11,3 +11,14 @@ type datePickerTypes = {
   date: any;
   setDate: (value: any) => void;
 };
+
+type headerContentProps = {
+  headerText: string;
+  subHeadertext?: string;
+  subText: string;
+};
+
+type profileImageProps = {
+  name: string;
+  image?: string;
+};
