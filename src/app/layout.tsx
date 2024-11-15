@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 import "./globals.css";
 
-const poppins = Poppins({
+const poppins = DM_Sans({
   subsets: ["latin"],
   display: "swap",
   weight: ["400", "500", "600", "700", "800", "900"],
@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.className} antialiased`}>{children}</body>
+      <body className={`${poppins.className}  antialiased`}>{children}</body>
     </html>
   );
 }

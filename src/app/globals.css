@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -17,8 +19,13 @@ body {
   p {
     @apply text-[15px];
   }
+}
 
-  h2 {
-    @apply font-bold text-dark-1 text-[25px] max-[500px]:text-[18px];
-  }
+.profile_bg {
+  background: linear-gradient(
+    150deg,
+    rgb(241, 181, 191),
+    rgb(137, 137, 240),
+    /* rgb(72, 151, 242), */ rgb(241, 181, 191)
+  );
 }
