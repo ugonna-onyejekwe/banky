@@ -4,5 +4,10 @@ type CustomFieldProps = {
   label: string;
   name: string;
   placeholder?: string;
-  type: "TEXT" | "NUMBER" | "PASSWORD";
+  type: "TEXT" | "NUMBER" | "PASSWORD" | "DATE";
+};
+
+type datePickerTypes = {
+  date: any;
+  setDate: (value: any) => void;
 };
