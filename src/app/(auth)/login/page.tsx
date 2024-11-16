@@ -9,7 +9,9 @@ const Login = () => {
     <div className="bg-primary-2 size-full min-h-screen flex-1  pt-[30px] px-[100px] max-[700px]:px-[50px] max-[500px]:px-[5%]">
       <Logo />
 
-      <h2 className="mt-[100px]">Log in</h2>
+      <h2 className="mt-[100px] font-extrabold text-[30px] text-dark-1">
+        Log in
+      </h2>
       <p className="pt-1">Welcome back! Please enter your details.</p>
 
       <div className="my-[30px]">
