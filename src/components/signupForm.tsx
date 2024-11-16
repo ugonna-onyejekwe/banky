@@ -2,15 +2,18 @@
 
 import { SignUpFormSchema } from "@/lib/formSchemas";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import CustomField from "./CustomField";
+import SubmitButton from "./submitButton";
+import { signUp } from "@/lib/actions/user.actions";
 
 const SignUpForm = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [user, setUser] = useState();
   // zod validation
   const form = useForm<z.infer<typeof SignUpFormSchema>>({
     resolver: zodResolver(SignUpFormSchema),
@@ -18,6 +21,7 @@ const SignUpForm = () => {
       lastName: "",
       firstName: "",
       address: "",
+      city: "",
       state: "",
       postalCode: "",
       dateOFBirth: new Date(),
@@ -28,8 +32,17 @@ const SignUpForm = () => {
   });
 
   //   formSubmit function
-  function onSubmit(values: z.infer<typeof SignUpFormSchema>) {
-    console.log(values);
+  function onSubmit(data: z.infer<typeof SignUpFormSchema>) {
+    setIsLoading(true);
+    try {
+      // sign up a user with Appwrite && get plaid token
+      const user = signUp(data);
+
+      // if(user)setUser(user)
+    } catch (error) {
+      console.log(error);
+    }
+    setIsLoading(false);
   }
 
   return (
@@ -58,6 +71,14 @@ const SignUpForm = () => {
           label="Address"
           control={form.control}
           name="address"
+          type={"TEXT"}
+        />
+
+        <CustomField
+          placeholder="Enter city"
+          label="City"
+          control={form.control}
+          name="city"
           type={"TEXT"}
         />
 
@@ -95,7 +116,7 @@ const SignUpForm = () => {
           type={"PASSWORD"}
         />
 
-        <Button type="submit">Submit</Button>
+        <SubmitButton text="Submit" loading={isLoading} />
       </form>
     </Form>
   );

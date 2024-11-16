@@ -1,3 +1,4 @@
+import MobileNav from "@/components/sidebar/MobileNav";
 import Sidebar from "@/components/sidebar/sidebar";
 
 export default function RootLayout({
@@ -9,7 +10,10 @@ export default function RootLayout({
     <main className="flex">
       <Sidebar />
 
-      <div className="flex-1">{children}</div>
+      <div className="flex-1">
+        <MobileNav />
+        <div className="">{children}</div>
+      </div>
     </main>
   );
 }

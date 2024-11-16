@@ -2,15 +2,20 @@
 
 import { LoginFormSchema } from "@/lib/formSchemas";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import CustomField from "./CustomField";
+import SubmitButton from "./submitButton";
+import { signIn } from "@/lib/actions/user.actions";
+import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const route = useRouter();
+
   // zod validation
   const form = useForm<z.infer<typeof LoginFormSchema>>({
     resolver: zodResolver(LoginFormSchema),
@@ -21,8 +26,17 @@ const LoginForm = () => {
   });
 
   //   formSubmit function
-  function onSubmit(values: z.infer<typeof LoginFormSchema>) {
-    console.log(values);
+  function onSubmit(data: z.infer<typeof LoginFormSchema>) {
+    setIsLoading(true);
+    try {
+      // sign in a user with Appwrite
+      const user = signIn(data);
+
+      // if(user)route.push("/")
+    } catch (error) {
+      console.log(error);
+    }
+    setIsLoading(false);
   }
 
   return (
@@ -44,7 +58,7 @@ const LoginForm = () => {
           type={"PASSWORD"}
         />
 
-        <Button type="submit">Submit</Button>
+        <SubmitButton text="Submit" loading={isLoading} />
       </form>
     </Form>
   );
