@@ -24,6 +24,9 @@ export default {
           1: "#fff",
         },
       },
+      backgroundImage: {
+        "bank-gradient": "linear-gradient(90deg, #0179FE 0%, #4893FF 100%)",
+      },
       boxShadow: {
         customShadow: "0 0 5px #c7c7c7",
       },

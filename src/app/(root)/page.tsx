@@ -1,6 +1,8 @@
 import AccountBalanceCounter from "@/components/AccountBalanceCounter";
+import DoughnutChart from "@/components/doughnutChart";
 import Headercontent from "@/components/headerText";
 import HomeRightSideBar from "@/components/HomeRightSideBar";
+import { formatAmount } from "@/lib/utils";
 import Link from "next/link";
 import { FaPlus } from "react-icons/fa6";
 
@@ -15,15 +17,21 @@ export default function Home() {
         />
 
         {/* balance section */}
-        <div className="relative shadow-customShadow rounded-md p-[20px] mt-[20px]">
-          <h2 className="font-bold text-dark-1 text-[17px]">
-            Bank accounts: {1}
-          </h2>
+        <div className="relative shadow-customShadow rounded-md p-[20px] mt-[20px] flex gap-3">
+          <div className="size-[130px]">
+            <DoughnutChart />
+          </div>
 
-          <p className="mt-[30px]">Total current balance</p>
+          <div>
+            <h2 className="font-bold text-dark-1 text-[17px]">
+              Bank accounts: {1}
+            </h2>
 
-          <div className="font-extrabold text-dark-1 text-[20px]">
-            <AccountBalanceCounter amount={20000} />
+            <p className="mt-[30px]">Total current balance</p>
+
+            <div className="font-extrabold text-dark-1 text-[20px]">
+              <AccountBalanceCounter amount={200000} />
+            </div>
           </div>
 
           <Link
