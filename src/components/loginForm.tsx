@@ -26,13 +26,13 @@ const LoginForm = () => {
   });
 
   //   formSubmit function
-  function onSubmit(data: z.infer<typeof LoginFormSchema>) {
+  async function onSubmit(data: z.infer<typeof LoginFormSchema>) {
     setIsLoading(true);
     try {
       // sign in a user with Appwrite
-      const user = signIn(data);
+      const user = await signIn(data);
 
-      // if(user)route.push("/")
+      if (user) route.push("/");
     } catch (error) {
       console.log(error);
     }

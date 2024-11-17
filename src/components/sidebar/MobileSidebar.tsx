@@ -4,11 +4,10 @@ import {
   SheetContent,
   SheetHeader,
   SheetTitle,
-  SheetTrigger,
 } from "@/components/ui/sheet";
 import SidebarContent from "./sidebarContent";
 
-const MobileSidebar = ({ isOpen, setIsOpen }: MobilseSideBarProps) => {
+const MobileSidebar = ({ isOpen, setIsOpen, user }: MobilseSideBarProps) => {
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetContent className="bg-white w-[95%]  max-w-[350px]">
@@ -16,8 +15,8 @@ const MobileSidebar = ({ isOpen, setIsOpen }: MobilseSideBarProps) => {
           <SheetTitle className="sr-only">menu list</SheetTitle>
         </SheetHeader>
 
-        <div className="w-full" onClick={() => setIsOpen(false)}>
-          <SidebarContent type="sm_sidebar" />
+        <div className="w-full h-full" onClick={() => setIsOpen(false)}>
+          <SidebarContent type="sm_sidebar" user={user} />
         </div>
       </SheetContent>
     </Sheet>

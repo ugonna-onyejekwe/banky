@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   FormControl,
   FormField,
@@ -8,6 +8,8 @@ import {
 } from "./ui/form";
 import { Input } from "./ui/input";
 import DateField from "./DateField";
+import { MdOutlineRemoveRedEye } from "react-icons/md";
+import { LuEyeOff } from "react-icons/lu";
 
 const CustomFormItem = ({
   label,
@@ -15,6 +17,8 @@ const CustomFormItem = ({
   field,
   type,
 }: CustomFieldProps) => {
+  const [showPassword, setShowPassword] = useState(false);
+
   if (type === "TEXT") {
     return (
       <FormItem className="flex-1  w-full">
@@ -31,12 +35,21 @@ const CustomFormItem = ({
       <FormItem className="flex-1 w-full">
         <FormLabel>{label}</FormLabel>
         <FormControl>
-          <Input
-            placeholder={placeholder}
-            {...field}
-            type="password"
-            className="bg-white flex-1"
-          />
+          <div className="relative">
+            <Input
+              placeholder={placeholder}
+              {...field}
+              type={showPassword ? "text" : "password"}
+              className="bg-white flex-1"
+            />
+
+            <span
+              onClick={() => setShowPassword(!showPassword)}
+              className="cursor-pointer absolute top-[20px] text-[17px] right-3"
+            >
+              {!showPassword ? <MdOutlineRemoveRedEye /> : <LuEyeOff />}{" "}
+            </span>
+          </div>
         </FormControl>
 
         <FormMessage />

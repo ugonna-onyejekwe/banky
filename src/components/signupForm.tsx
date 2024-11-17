@@ -10,10 +10,12 @@ import { Form } from "@/components/ui/form";
 import CustomField from "./CustomField";
 import SubmitButton from "./submitButton";
 import { signUp } from "@/lib/actions/user.actions";
+import { Button } from "./ui/button";
+import { useRouter } from "next/navigation";
 
 const SignUpForm = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [user, setUser] = useState();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const route = useRouter();
   // zod validation
   const form = useForm<z.infer<typeof SignUpFormSchema>>({
     resolver: zodResolver(SignUpFormSchema),
@@ -25,23 +27,24 @@ const SignUpForm = () => {
       state: "",
       postalCode: "",
       dateOFBirth: new Date(),
-      ssn: 0,
+      ssn: "",
       email: "",
       password: "",
     },
   });
 
   //   formSubmit function
-  function onSubmit(data: z.infer<typeof SignUpFormSchema>) {
+  async function onSubmit(data: z.infer<typeof SignUpFormSchema>) {
     setIsLoading(true);
     try {
       // sign up a user with Appwrite && get plaid token
-      const user = signUp(data);
+      const user = await signUp(data);
 
-      // if(user)setUser(user)
+      if (user) route.push("/connect-plaid");
     } catch (error) {
       console.log(error);
     }
+
     setIsLoading(false);
   }
 
@@ -81,6 +84,24 @@ const SignUpForm = () => {
           name="city"
           type={"TEXT"}
         />
+
+        <div className="flex gap-5 items-center   max-[500px]:flex-col   ">
+          <CustomField
+            placeholder="Enter state"
+            label="State"
+            control={form.control}
+            name="state"
+            type={"TEXT"}
+          />
+
+          <CustomField
+            placeholder="ex: 1234"
+            label="Postal code"
+            control={form.control}
+            name="postalCode"
+            type={"NUMBER"}
+          />
+        </div>
 
         <div className="flex gap-5 items-center   max-[500px]:flex-col   ">
           <CustomField

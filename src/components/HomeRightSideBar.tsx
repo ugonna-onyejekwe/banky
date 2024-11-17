@@ -4,22 +4,26 @@ import { FaPlus } from "react-icons/fa6";
 import Link from "next/link";
 import BankCard from "./BankCard";
 
-const HomeRightSideBar = () => {
+const HomeRightSideBar = ({ user }: RightSidebarProps) => {
   return (
     <>
       {/* header image */}
       <div>
         <div className="profile_bg h-[130px] relative">
           <div className="absolute bottom-[-80%] left-[40px]  translate-y-[-50%]">
-            <Profile_image name="ugonna" image="" />
+            <Profile_image
+              name={user?.name}
+              image=""
+              className="h-[100px] w-[100px]"
+            />
           </div>
         </div>
 
         <div className="mt-[70px] px-3">
           <h2 className="font-bold text-dark-1 text-[20px] capitalize">
-            Onyejekwe Ugonna
+            {user?.name}
           </h2>
-          <p>Onyejekwe@gmail.com</p>
+          <p>{user?.email}</p>
         </div>
       </div>
 

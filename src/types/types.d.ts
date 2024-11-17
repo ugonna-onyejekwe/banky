@@ -21,6 +21,7 @@ type headerContentProps = {
 type profileImageProps = {
   name: string;
   image?: string;
+  className: string;
 };
 
 type Account = {
@@ -44,6 +45,7 @@ type DoughnutChartProps = {
 type MobilseSideBarProps = {
   isOpen: boolean;
   setIsOpen: (value: boolean) => void;
+  user: User;
 };
 
 type signInProps = {
@@ -58,8 +60,34 @@ type signUpProps = {
   city: string;
   state: string;
   postalCode: string;
-  dateOFBirth: string;
+  dateOFBirth: Date;
   ssn: string;
   email: string;
   password: string;
+};
+
+declare type User = {
+  $id: string;
+  email: string;
+  userId: string;
+  dwollaCustomerUrl: string;
+  dwollaCustomerId: string;
+  firstName: string;
+  lastName: string;
+  name: string;
+  address1: string;
+  city: string;
+  state: string;
+  postalCode: string;
+  dateOfBirth: string;
+  ssn: string;
+};
+
+type RightSidebarProps = {
+  user: User;
+};
+
+type SidebarContentProps = {
+  type: "lg_sidebar" | "sm_sidebar";
+  user: User;
 };

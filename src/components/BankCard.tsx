@@ -3,7 +3,7 @@ import React from "react";
 
 const BankCard = () => {
   return (
-    <div className="flex w-full cursor-pointer  shadow-customShadow rounded-lg bg-bank-gradient  h-[170px]  overflow-hidden">
+    <div className="flex w-full cursor-pointer  shadow-customShadow rounded-lg bg-bank-gradient  h-[150px]  overflow-hidden">
       <div className="flex flex-col justify-between p-[15px] flex-1">
         <h3 className="font-bold text-white text-[15px] whitespace-nowrap">
           Onyejekwe Ugonna

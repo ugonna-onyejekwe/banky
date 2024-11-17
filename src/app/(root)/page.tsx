@@ -2,17 +2,21 @@ import AccountBalanceCounter from "@/components/AccountBalanceCounter";
 import DoughnutChart from "@/components/doughnutChart";
 import Headercontent from "@/components/headerText";
 import HomeRightSideBar from "@/components/HomeRightSideBar";
+import { getLoggedInUser } from "@/lib/actions/user.actions";
 import { formatAmount } from "@/lib/utils";
 import Link from "next/link";
 import { FaPlus } from "react-icons/fa6";
 
-export default function Home() {
+export default async function Home() {
+  const user = await getLoggedInUser();
+  console.log(user);
+
   return (
     <div className="flex">
       <div className="mt-[30px] px-[30px] flex-1">
         <Headercontent
           headerText="Welcome, "
-          subHeadertext="Ugonna"
+          subHeadertext={user?.name?.split(" ")?.[0]}
           subText="Access & manage your account and transactions efficiently."
         />
 
@@ -49,7 +53,7 @@ export default function Home() {
       {/*right side bar */}
 
       <div className="max-xl:hidden h-screen w-[300px] border-l">
-        <HomeRightSideBar />
+        <HomeRightSideBar user={user} />
       </div>
     </div>
   );

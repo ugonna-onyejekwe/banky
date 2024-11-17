@@ -1,11 +1,17 @@
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import React from "react";
 
-const Profile_image = ({ name, image }: profileImageProps) => {
-  const ProfileSymbol = name.slice(0, 1);
+const Profile_image = ({ name, image, className }: profileImageProps) => {
+  const ProfileSymbol = name?.slice(0, 1);
 
   return (
-    <div className="flex items-center justify-center p-1 shadow-customShadow h-[100px] w-[100px] rounded-full bg-white">
+    <div
+      className={cn(
+        "flex items-center justify-center p-1 shadow-customShadow  rounded-full bg-white",
+        className
+      )}
+    >
       {image && image !== "" ? (
         <Image
           src={image}

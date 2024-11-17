@@ -7,7 +7,7 @@ export default function RootLayout({
 }>) {
   return (
     <main className="flex min-h-screen">
-      <div className="flex-1 ">{children}</div>
+      <div className="flex-1 bg-primary-2">{children}</div>
 
       <div className="h-screen max-[900px]:hidden sticky flex-1 top-0">
         <div className="flex items-center justify-center size-full">
